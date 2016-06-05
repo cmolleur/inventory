@@ -13,7 +13,7 @@ router.get('/', function(req, res){
 // add single item
 router.post('/', function(req,res){
   Item.create(req.body.party, function(err, databaseItem){
-    res.json(databaseItem);
+    res.json(item: databaseItem);
   })
 })
 
