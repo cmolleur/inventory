@@ -3,37 +3,34 @@ var router = express.Router();
 var Item = require('../../models/item');
 
 // Get
-router.get('/', function(req, res){
-  Item.find({}, function(err, dbItems){
-    res.json({ items: dbItems})
+router.get('/', function(req, res, next) {
+  Item.find(function(err, items) {
+    if (err) {
+      next(err);
+    }else {
+      res.json(items);
+    }
+  })
+});
+
+router.post('/', function(req, res, next) {
+  Item.create(req.body.item, function(err, item) {
+    if (err) {
+      next(err);
+    }else {
+      res.json(item);
+    }
   });
 });
 
-// Show One
-router.get('/:id', function(req, res){
-  Item.findById( req.params.id, function( err, dbItems){
-    res.json( dbItem );
-  });
+router.delete('/:id', function(req, res, next) {
+  Item.findByIdAndRemove(req.params.id, function(err) {
+    if (err) {
+      next(err);
+    }else {
+      res.status(203).end();
+    }
+  })
 });
-
-// Post Item
-router.post('/', function(req, res){
-  console.log(req.body)
-  Item.create(req.body.idea, function(err, item){
-    res.json(item);
-  });
-});
-
-
-// Delete
-
-router.delete('/:id', function(req, res) {
-  console.log('deleting!');
-  Item.findByIdAndRemove(req.params.id, function(err){
-    if (err) { res.status(500).end(); }
-    res.status(204).end();
-  });
-});
-
 
 module.exports = router;

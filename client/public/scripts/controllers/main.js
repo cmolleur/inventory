@@ -26,7 +26,7 @@ angular
 
       }
 
-      $scope.removeIdea = function(item){
+      $scope.removeItem = function(item){
 
         itemsAPI.remove(item._id).then(function(response){
           if (response.status == 203) {
