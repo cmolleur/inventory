@@ -1,0 +1,11 @@
+body {
+  background-image: url("../img/absurdidad.png");
+  background-repeat: repeat;
+}
+nav {
+  background-color: #2185d0;
+  padding: 15px;
+  text-align: center;
+  color: white;
+  margin-bottom: 15px;
+}
