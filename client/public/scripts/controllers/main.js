@@ -4,7 +4,7 @@ angular
     function( $scope, $http, itemsAPI ) {
 
       $scope.items = [];
-      // $scope.itemData = '';
+
 
       $scope.createItem = function(){
         var newItem = {
@@ -14,17 +14,13 @@ angular
             amount: $scope.amount
           }
         }
-
-        itemsAPI.create(newItem).then(function(response){
+        $http.post('/api/items', newItem).then(function(response){
           console.log(response);
-          $scope.items.push(response.data);
-        })
-
-        itemsAPI.getAll().then(function(response){
-          $scope.items = response.data;
+          $scope.items.push(response.data.item);
         });
 
       }
+
 
       $scope.removeItem = function(item){
 
