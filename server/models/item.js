@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
-var inventoryShema = mongoose.Schema({
-  item: { type: String, required: true },
+var inventoryShema = new mongoose.Schema({
+  item: { type: String },
   details: { type: String },
   amount: { type: String },
 }, { timestamps: true });

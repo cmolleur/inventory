@@ -1,7 +1,7 @@
 //modules!
 var express = require('express');
 var router = express.Router();
-var Item = require('../../models/item');
+var Item = require('../../models/item.js');
 
 // get all
 router.get('/', function(req, res){
@@ -17,13 +17,6 @@ router.post('/', function(req,res){
   });
 })
 
-// router.post('/', function(req, res){
-//   var itemData = req.body.item;
-//   var item = new BlogPost(itemData);
-//   item.save(function(err, databaseItem){
-//     res.json(databaseItem)
-//   });
-// });
 
 // DELETE
 router.delete('/:id', function(req, res, next) {
