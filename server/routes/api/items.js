@@ -1,7 +1,7 @@
 //modules!
 var express = require('express');
 var router = express.Router();
-var Item = require('../../models/item.js');
+var Item = require('../../models/item');
 
 // get all
 router.get('/', function(req, res){
@@ -12,7 +12,7 @@ router.get('/', function(req, res){
 
 // add single item
 router.post('/', function(req,res){
-  Item.create(req.body.party, function(err, databaseItem){
+  Item.create(req.body.item, function(err, databaseItem){
     res.json(databaseItem);
   });
 })

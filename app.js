@@ -6,7 +6,7 @@ var express       = require('express'),
 
 app.set('view engine', 'ejs');
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/inventory_app');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/itemdatabase');
 
 app.use(morgan('dev'));
 

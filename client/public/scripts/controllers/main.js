@@ -10,7 +10,7 @@ angular
     $scope.getallData = function(){
       $http.get('/api/items').then(function(response){
         $scope.items = response.data.items;
-        console.log("All items:", response.data.items);
+        console.log("All items:", response);
       });
     }
     $scope.getallData();
