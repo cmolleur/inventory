@@ -1,7 +1,5 @@
-var dotenv        = require('dotenv').config(),
-    express       = require('express'),
+var express       = require('express'),
     morgan        = require('morgan'),
-    path          = require('path'),
     mongoose      = require('mongoose'),
     bodyParser    = require('body-parser'),
     app = express();
@@ -18,9 +16,9 @@ app.use(bodyParser.json());
 app.use(express.static('./client/public'));
 
 var indexRouter = require('./server/routes/index.js');
-var itemsRouter = require('./server/routes/api/items.js');
+var itemsAPIRouter = require('./server/routes/api/items.js');
 app.use('/', indexRouter);
-app.use('/api/parties', itemsRouter);
+app.use('/api/items', itemsAPIRouter);
 
 var port = process.env.PORT || 8080;
 app.listen(port, function(){
