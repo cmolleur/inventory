@@ -1,7 +1,7 @@
 //modules!
 var express = require('express');
 var router = express.Router();
-var Item = require('./models/item');
+var Item = require('../../models/items');
 
 //routing!
 router.get('/', function(req, res){
