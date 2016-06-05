@@ -1,8 +1,14 @@
 // modules and middleware!
 var express = require('express');
+var bodyParser = require('body-parser');
+var path = require('path');
+var morgan = require('morgan');
+var mongoose = require('mongoose');
+var indexRouter = require('./routes/index');
+var items = require('./routes/api/items');
+
 var app = express();
 
-var morgan = require('morgan');
 app.use(morgan('dev'));
 
 app.set('view engine', 'ejs');
@@ -21,10 +27,8 @@ app.get('/', function(req,res){
   res.render('index');
 });
 
-var indexRouter = require('./routes/index');
 app.use('/api/items', indexRouter);
 
-var items = require('./routes/api/items');
 app.use('/api/items', items);
 
 //listen!
