@@ -1,33 +1,25 @@
-// modules and middleware!
 var express = require('express');
-var bodyParser = require('body-parser');
-var path = require('path');
-var morgan = require('morgan');
-var mongoose = require('mongoose');
-var indexRouter = require('./server/routes/index.js');
-var items = require('./server/routes/api/items.js');
-
 var app = express();
+var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 
-app.use(morgan('dev'));
 
-app.set('view engine', 'ejs');
+app.use(express.static('./client'));
 
-app.use(express.static('./public'));
+app.set('views', __dirname + '/client/views')
+app.set('view engine', 'ejs')
+
+mongoose.connect('mongodb://localhost/items_api')
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: true}));
 
-// var mongoPath = 'mongodb://localhost/blogPosts';
-var mongoose = require('mongoose');
-mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost/user_auth" );
-
+var indexRouter = require('./server/routes/index');
+var itemsRouter = require('./server/routes/api/items');
 
 app.use('/', indexRouter);
-app.use('/api/items', items);
+app.use('/api/items', itemsRouter);
 
-//listen!
-var port = process.env.PORT || 8080;
-app.listen(port, function(){
-  console.log("...listening on port" + port);
+app.listen(8080, function(){
+  console.log("HERE I AM.");
 });
