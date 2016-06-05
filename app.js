@@ -9,7 +9,7 @@ var itemsRouter = require('./server/routes/api/items.js');
 app.set('view engine', 'ejs')
 // connect to db
 // process.env.MONGOLAB_URI is needed for when we deploy to Heroku
-mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost/user_auth" );
+mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost" );
 
 app.use(express.static('client/public'));
 
