@@ -1,40 +1,34 @@
-var  express         = require('express');
-var  morgan          = require('morgan');
-var  mongoose        = require('mongoose');
-var  bodyParser      = require('body-parser');
-var  app             = express();
-var indexRouter = require('./server/routes/index.js');
-var itemsRouter = require('./server/routes/api/items.js');
+// modules and middleware!
+var express = require('express');
+var app = express();
+
+var morgan = require('morgan');
+app.use(morgan('dev'));
 
 app.set('view engine', 'ejs');
 
-// connect to db
-// process.env.MONGOLAB_URI is needed for when we deploy to Heroku
+app.use(express.static('./public'));
+
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded());
+
+// var mongoPath = 'mongodb://localhost/blogPosts';
+var mongoose = require('mongoose');
 mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost/user_auth" );
 
-// log requests to STDOUT
-app.use(morgan('dev'));
+//routing!
+app.get('/', function(req,res){
+  res.render('index');
+});
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+var indexRouter = require('./routes/index');
+app.use('/api/items', indexRouter);
 
-// parse application/json
-app.use(bodyParser.json());
+var items = require('./routes/api/items');
+app.use('/api/items', items);
 
-
-var indexRouter = require('./server/routes/index.js');
-app.use('/', indexRouter);
-
-var itemsRouter = require('./server/routes/api/items.js');
-app.use('/api/items', itemsRouter);
-
-
-// Set static file root folder
-app.use(express.static('client/public'));
-
-
+//listen!
 var port = process.env.PORT || 8080;
-
-app.listen( port, function(){
-  console.log( "I'm waiting for you on 8080 :)" );
+app.listen(port, function(){
+  console.log("...listening on port" + port);
 });
