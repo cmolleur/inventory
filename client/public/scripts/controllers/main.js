@@ -20,6 +20,7 @@ angular
 
       itemsAPI.create(newItem).then(function(response){
         $scope.items.push(response.data);
+        console.log("Data has been pushed!");
       });
 
       itemsAPI.getAll().then(function(response){
