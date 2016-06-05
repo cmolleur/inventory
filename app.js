@@ -3,13 +3,15 @@ var  morgan          = require('morgan');
 var  mongoose        = require('mongoose');
 var  bodyParser      = require('body-parser');
 var  app             = express();
+var indexRouter = require('./server/routes/index.js');
+var itemsRouter = require('./server/routes/api/items.js');
 
+app.set('view engine', 'ejs')
 // connect to db
 // process.env.MONGOLAB_URI is needed for when we deploy to Heroku
-mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost/items_api" );
+mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost/user_auth" );
 
 app.use(express.static('client/public'));
-app.set('view engine', 'ejs')
 
 // log requests to STDOUT
 app.use(morgan('dev'));
@@ -21,12 +23,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 var indexRouter = require('./server/routes/index.js');
+app.use('/', indexRouter);
+
 var itemsRouter = require('./server/routes/api/items.js');
+app.use('/api/items', itemsRouter);
+
 
 // Set static file root folder
 
-app.use('/', indexRouter);
-app.use('/api/items', itemsRouter);
 
 var port = process.env.PORT || 8080;
 
