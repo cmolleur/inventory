@@ -1,39 +1,28 @@
-var  express         = require('express');
-var  morgan          = require('morgan');
-var  mongoose        = require('mongoose');
-var  bodyParser      = require('body-parser');
-var  app             = express();
-var indexRouter = require('./server/routes/index.js');
-var itemsRouter = require('./server/routes/api/items.js');
+var dotenv        = require('dotenv').config(),
+    express       = require('express'),
+    morgan        = require('morgan'),
+    path          = require('path'),
+    mongoose      = require('mongoose'),
+    bodyParser    = require('body-parser'),
+    app = express();
 
-app.set('view engine', 'ejs')
-// connect to db
-// process.env.MONGOLAB_URI is needed for when we deploy to Heroku
-mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost/" );
+app.set('view engine', 'ejs');
 
-app.use(express.static('client/public'));
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/inventory_app');
 
-// log requests to STDOUT
 app.use(morgan('dev'));
 
-// parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// parse application/json
 app.use(bodyParser.json());
 
+app.use(express.static('./client/public'));
+
 var indexRouter = require('./server/routes/index.js');
-app.use('/', indexRouter);
-
 var itemsRouter = require('./server/routes/api/items.js');
-app.use('/api/items', itemsRouter);
-
-
-// Set static file root folder
-
+app.use('/', indexRouter);
+app.use('/api/parties', itemsRouter);
 
 var port = process.env.PORT || 8080;
-
-app.listen( port, function(){
-  console.log( "I'm waiting for you on 8080 :)" );
+app.listen(port, function(){
+  console.log("Picklebacks on 8080");
 });

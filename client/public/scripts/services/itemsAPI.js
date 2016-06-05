@@ -7,12 +7,12 @@ angular
           return $http.get('/api/items');
         },
 
-        // create: function(newItem){
-        //   return $http.post('/api/items', newItem);
-        // },
+        create: function(newItem){
+          return $http.post('/api/items', newItem);
+        },
 
         remove: function(id){
-          return $http.delete('/items/' + id);
+          return $http.delete('/api/items/' + id);
         }
 
       }
