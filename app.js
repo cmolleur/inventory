@@ -4,8 +4,8 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var morgan = require('morgan');
 var mongoose = require('mongoose');
-var indexRouter = require('./routes/index.js');
-var items = require('./routes/api/items.js');
+var indexRouter = require('./server/routes/index.js');
+var items = require('./server/routes/api/items.js');
 
 var app = express();
 
@@ -15,22 +15,15 @@ app.set('view engine', 'ejs');
 
 app.use(express.static('./public'));
 
-var bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded());
-
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // var mongoPath = 'mongodb://localhost/blogPosts';
 var mongoose = require('mongoose');
 mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost/user_auth" );
 
-//routing!
-app.get('/', function(req,res){
-  res.render('index');
-});
 
-app.use('/api/items', indexRouter);
-
+app.use('/', indexRouter);
 app.use('/api/items', items);
 
 //listen!
