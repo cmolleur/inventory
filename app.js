@@ -4,8 +4,8 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var morgan = require('morgan');
 var mongoose = require('mongoose');
-var indexRouter = require('./routes/index');
-var items = require('./routes/api/items');
+var indexRouter = require('./routes/index.js');
+var items = require('./routes/api/items.js');
 
 var app = express();
 
