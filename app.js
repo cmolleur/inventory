@@ -18,6 +18,8 @@ app.use(express.static('./public'));
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded());
 
+app.use(bodyParser.urlencoded({extended: false}));
+
 // var mongoPath = 'mongodb://localhost/blogPosts';
 var mongoose = require('mongoose');
 mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost/user_auth" );
