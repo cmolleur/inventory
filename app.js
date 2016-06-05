@@ -12,8 +12,6 @@ app.set('view engine', 'ejs');
 // process.env.MONGOLAB_URI is needed for when we deploy to Heroku
 mongoose.connect( process.env.MONGODB_URI || "mongodb://localhost/user_auth" );
 
-app.use(cookieParser());
-
 // log requests to STDOUT
 app.use(morgan('dev'));
 
