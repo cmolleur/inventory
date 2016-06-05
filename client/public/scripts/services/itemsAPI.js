@@ -4,11 +4,11 @@ angular
     function($http) {
       return {
         getAll: function(){
-          return $http.get('/items');
+          return $http.get('/api/items');
         },
 
         create: function(newItem){
-          return $http.post('/items', newItem);
+          return $http.post('/api/items', newItem);
         },
 
         remove: function(id){

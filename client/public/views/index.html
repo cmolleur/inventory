@@ -24,27 +24,30 @@
       <h1>Cabinet.me</h1>
       <p>An Inventory of Your Kitchen</p>
     </nav>
+
     <div class="ui container">
-      <form class="ui form">
+
+      <form class="ui form" ng-submit="createItem()">
         <div class="field">
           <label>Item</label>
-          <input type="text" placeholder="Item" ng-model="post.name">
+          <input type="text" placeholder="Item" ng-model="name">
         </div>
         <div class="field">
           <label>Details (if any)</label>
-          <input type="text" placeholder="Details" ng-model="post.details">
+          <input type="text" placeholder="Details" ng-model="details">
         </div>
         <div class="field">
           <label>Amount</label>
-          <select class="ui dropdown" ng-model="post.amount">
+          <select class="ui dropdown" ng-model="amount">
             <option value="">Amount</option>
             <option value="1">High</option>
             <option value="1">Medium</option>
             <option value="0">Low</option>
           </select>
         </div>
-        <button class="ui button" type="submit" ng-click="createItem(post)">Submit</button>
+        <button class="ui button" type="submit">Submit</button>
       </form>
+
       <div class="ui divider"></div>
 
       <div class="ui cards">

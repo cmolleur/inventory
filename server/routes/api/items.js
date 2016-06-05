@@ -3,23 +3,15 @@ var router = express.Router();
 var Item = require('../../models/item');
 
 // Get
-router.get('/', function(req, res, next) {
-  Item.find(function(err, items) {
-    if (err) {
-      next(err);
-    }else {
-      res.json(items);
-    }
-  })
+router.get('/', function(req, res){
+  Item.find({}, function(err, dbItems){
+    res.json({ items: dbItems})
+  });
 });
 
-router.post('/', function(req, res, next) {
-  Item.create(req.body.item, function(err, item) {
-    if (err) {
-      next(err);
-    }else {
-      res.json(item);
-    }
+router.post('/', function(req, res){
+  Item.create(req.body.item, function(err, item){
+    res.json(item);
   });
 });
 

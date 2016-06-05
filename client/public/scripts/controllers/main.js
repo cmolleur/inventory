@@ -6,12 +6,12 @@ angular
       $scope.items = [];
       // $scope.itemData = '';
 
-      $scope.createItem = function(post){
+      $scope.createItem = function(){
         var newItem = {
           item : {
-            name: post.name,
-            details: post.details,
-            amount: post.amount
+            name: $scope.name,
+            details: $scope.details,
+            amount: $scope.amount
           }
         }
 
@@ -36,5 +36,39 @@ angular
           }
         });
       }
+
+
+      // $scope.getallItems = function(){
+      //   $http.get('/api/items').then(function(response){
+      //     $scope.items = response.data.items;
+      //   });
+      // }
+      // $scope.getallItems();
+      //
+      //
+      //
+      // $scope.getItemData = function(){
+      //   var newItem = {
+      //     item: {
+      //       name: $scope.item.name,
+      //       details: $scope.item.details,
+      //       amount: $scope.item.amount
+      //     }
+      //   }
+      //   $http.post('/api/items', newItem).then(function(response){
+      //     $scope.items.push(response.data.item);
+      //   });
+      //
+      // }
+      //
+      // $scope.deleteItem = function(item){
+      //   var itemId = item.id;
+      //   $http.delete('/api/items/' + drinkId)
+      //   .success(function (drinkId,status,headers){
+      //     console.log("Drink Deleted");
+      //   }).then(function(){
+      //     $scope.getAllDrinks();
+      //   });
+      // }
 
     }]);
