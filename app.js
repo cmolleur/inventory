@@ -14,12 +14,14 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use(express.static('./client/public'));
 
 var indexRouter = require('./server/routes/index.js');
 var itemsAPIRouter = require('./server/routes/api/items.js');
 app.use('/', indexRouter);
 app.use('/api/items', itemsAPIRouter);
+
+app.use(express.static('./client/public'));
+
 
 var port = process.env.PORT || 8080;
 
