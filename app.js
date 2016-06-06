@@ -8,7 +8,7 @@ var express       = require('express'),
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/itemdatabase');
 
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
