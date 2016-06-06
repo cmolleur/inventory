@@ -9,3 +9,14 @@ nav {
   color: white;
   margin-bottom: 15px;
 }
+#delete-btn {
+  margin-top: 15px;
+}
+.ui.card>.content>.header:not(.ui), .ui.cards>.card>.content>.header:not(.ui) {
+  font-size: 24px;
+}
+@media (max-width: 636px) {
+  .ui.cards>.card {
+    width: 100%;
+  }
+}

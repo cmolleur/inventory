@@ -40,12 +40,12 @@
           <label>Amount</label>
           <select class="ui dropdown" ng-model="item.amount">
             <option value="">Amount</option>
-            <option value="1">High</option>
-            <option value="1">Medium</option>
-            <option value="0">Low</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
           </select>
         </div>
-        <button class="ui button" type="submit" ng-click="createItem(item)">Create</button>
+        <button class="ui button" type="submit">Create</button>
       </form>
 
       <div class="ui divider"></div>
@@ -54,11 +54,11 @@
         <div class="card" ng-repeat="item in items | orderBy: 'created_at':true">
           <div class="content">
             <div class="header">{{item.name}}</div>
-            <div class="meta">Availability: {{item.amount}}</div>
+            <div class="meta">Amount Left: {{item.amount}}</div>
             <div class="description">
-              {{item.details}}
+              Item details: {{item.details}}
             </div>
-            <button class="ui secondary button" ng-click="deleteItem(item)">
+            <button id="delete-btn" class="ui secondary button" ng-click="deleteItem(item)">
               Delete
             </button>
           </div>

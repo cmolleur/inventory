@@ -20,16 +20,25 @@ angular
       var newItem = {
         item: {
           name: $scope.item.name,
-          details: $scope.item.ingredients,
-          amount: $scope.item.image
+          details: $scope.item.details,
+          amount: $scope.item.amount
         }
       }
       $http.post('/api/items', newItem).then(function(response){
         $scope.items.push(response.data.item);
-        console.log("Item pushed", response.data);
+        $scope.getallData();
       });
 
     }
+
+    // $scope.deleteItem = function(item){
+    //   var itemId = item._id;
+    //   $http.delete('/api/items/' + itemId).then(function(){
+    //     console.log("Deleted!!");
+    //     $scope.getallData();
+    //   });
+    // }
+
     // $scope.createItem = function(item){
     //
     //   var newItem = {
@@ -52,15 +61,15 @@ angular
     //
     // }
 
-    $scope.deleteItem = function(idea){
+    $scope.deleteItem = function(item){
       itemsAPI.remove(item._id).then(function(response){
         console.log("Removed");
         if (response.status == 203) {
           $scope.items = $scope.items.filter(function(i){
             return i._id != idea._id;
           });
-
         }
+
       });
     }
 
