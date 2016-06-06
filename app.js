@@ -1,12 +1,9 @@
-var dotEnv          = require('dotenv').config();
+var dotEnv        = require('dotenv').config();
 var express       = require('express'),
     morgan        = require('morgan'),
     mongoose      = require('mongoose'),
     bodyParser    = require('body-parser'),
     app = express();
-
-    app = require('express')();
-    http = require('http').Server(app);
 
 app.set('view engine', 'ejs');
 
