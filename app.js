@@ -4,11 +4,11 @@ var express       = require('express'),
     bodyParser    = require('body-parser'),
     app = express();
 
-// app.set('view engine', 'ejs');
+app.set('view engine', 'ejs');
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/itemdatabase');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/');
 
-// app.use(morgan('dev'));
+app.use(morgan('dev'));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
