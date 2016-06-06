@@ -10,7 +10,17 @@ angular
     $scope.getallData = function(){
       $http.get('/api/items').then(function(response){
         $scope.items = response.data.items;
-        console.log("All items:", response);
+        console.log("All items:", response.data.items);
+        // for (var i = 0; i < $scope.items.length; i++) {
+        //   var amountDiv = document.getElementById("amount");
+        //   if ($scope.items.amount == "High") {
+        //     amountDiv.style.color = "#177812";
+        //   }else if ($scope.items.amount == "Medium") {
+        //     amountDiv.style.color = "yellow";
+        //   }else {
+        //     amountDiv.style.color = "orange";
+        //   }
+        // }
       });
     }
     $scope.getallData();
