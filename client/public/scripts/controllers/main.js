@@ -31,13 +31,17 @@ angular
 
     }
 
-    // $scope.deleteItem = function(item){
-    //   var itemId = item._id;
-    //   $http.delete('/api/items/' + itemId).then(function(){
-    //     console.log("Deleted!!");
-    //     $scope.getallData();
-    //   });
-    // }
+    $scope.reloadPage = function(){$window.location.reload();}
+
+    $scope.deleteItem = function(item){
+      $scope.getallData();
+      var itemId = item._id;
+      $http.delete('/api/items/' + itemId)
+      .success(function (itemId, status, headers){
+      }).then(function(){
+        $scope.reloadPage();
+      });
+    }
 
     // $scope.createItem = function(item){
     //
@@ -61,16 +65,14 @@ angular
     //
     // }
 
-    $scope.deleteItem = function(item){
-      itemsAPI.remove(item._id).then(function(response){
-        console.log("Removed");
-        if (response.status == 203) {
-          $scope.items = $scope.items.filter(function(i){
-            return i._id != idea._id;
-          });
-        }
-
-      });
-    }
+    // $scope.deleteItem = function(item){
+    //   itemsAPI.remove(item._id).then(function(response){
+    //     if (response.status == 203) {
+    //       $scope.items = $scope.items.filter(function(i){
+    //         return i._id != idea._id;
+    //       });
+    //     }
+    //   });
+    // }
 
     }]);
