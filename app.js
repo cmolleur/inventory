@@ -1,5 +1,5 @@
-var dotEnv        = require('dotenv').config();
-var express       = require('express'),
+var dotEnv        = require('dotenv').config(),
+    express       = require('express'),
     morgan        = require('morgan'),
     mongoose      = require('mongoose'),
     bodyParser    = require('body-parser'),
@@ -23,6 +23,6 @@ app.use('/api/items', itemsAPIRouter);
 
 var port = process.env.PORT || 8080;
 
-http.listen(port, function(){
+app.listen(port, function(){
   console.log("Picklebacks on 8080");
 });
